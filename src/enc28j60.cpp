@@ -97,7 +97,7 @@ bool ENC28J60::promiscuous_enabled = false;
 #define EBSTCS          (0x08|0x60)
 #define MISTAT           (0x0A|0x60|0x80)
 #define EREVID           (0x12|0x60)
-#define ECOCON           (0x15|0x60)
+//#define ECOCON           (0x15|0x60)
 #define EFLOCON          (0x17|0x60)
 #define EPAUS           (0x18|0x60)
 
@@ -407,6 +407,9 @@ byte ENC28J60::initialize (uint16_t size, const byte* macaddr, byte csPin) {
     SetBank(ECON1);
     writeOp(ENC28J60_BIT_FIELD_SET, EIE, EIE_INTIE|EIE_PKTIE);
     writeOp(ENC28J60_BIT_FIELD_SET, ECON1, ECON1_RXEN);
+
+    //added by 900
+    //writeRegByte(ECOCON,2 & 0x07);  //set clock out 6.25 to 12.5 MHz
 
     byte rev = readRegByte(EREVID);
     // microchip forgot to step the number on the silicon when they

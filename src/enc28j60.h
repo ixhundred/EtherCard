@@ -35,6 +35,9 @@
 #define ENC_HEAP_START      SCRATCH_LIMIT
 #define ENC_HEAP_END        0x2000
 
+#define ECOCON           (0x15|0x60)
+extern void writeRegByte (byte address, byte data);
+
 /** This class provide low-level interfacing with the ENC28J60 network interface. This is used by the EtherCard class and not intended for use by (normal) end users. */
 class ENC28J60 {
 public:
